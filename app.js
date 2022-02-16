@@ -26,6 +26,32 @@ class LinkedList {
     }
   }
 
+  find(val) {
+    if (!this.head) {
+      return null;
+    }
+
+    let currNode = this.head;
+
+    while (currNode) {
+      if (currNode.value === val) {
+        return currNode;
+      }
+      currNode = currNode.next;
+    }
+
+    return null;
+  }
+
+  insertAfter(val, afterValue) {
+    const existingNode = this.find(afterValue);
+
+    if (existingNode) {
+      const newNode = { value: val, next: existingNode.next };
+      existingNode.next = newNode;
+    }
+  }
+
   delete(val) {
     if (!this.head) {
       return;
@@ -75,5 +101,14 @@ console.log(linkedList1.toArray());
 
 linkedList1.delete(true);
 linkedList1.delete('FirstNode');
+
+console.log(linkedList1.toArray());
+
+console.log(linkedList1.find(23));
+console.log(linkedList1.find('eewkkkk'));
+
+linkedList1.insertAfter('ovo radi', 23);
+linkedList1.insertAfter('dinamo', 'ovo radi');
+linkedList1.insertAfter(0.145, 'dinamo');
 
 console.log(linkedList1.toArray());
